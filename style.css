@@ -6,3 +6,32 @@
 		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	/* border: 1px red solid; */
 }
+
+body {
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	grid-template-rows: 1fr 8fr;
+}
+
+body .logoArea {
+	grid-area: 1 / 2 / 2 / 3;
+	display: flex;
+	justify-content: right;
+	gap: 0.5rem;
+	margin: 1rem 2rem;
+	font-size: 1.5rem;
+}
+
+body .logoArea .logo {
+	width: 2rem;
+}
+
+body .sidebar {
+	grid-area: 1 / 1 / 3 / 2;
+	background-color: darkgrey;
+}
+
+body .taskArea {
+	grid-area: 2 / 2 / 3 / 3;
+	background-color: cornsilk;
+}
