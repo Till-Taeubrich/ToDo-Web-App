@@ -1,4 +1,15 @@
-const lists = [];
+const lists = [
+	{
+		name: 'dummyOne',
+		tasks: [{ name: 'dummyTaskOne1' }, { name: 'dummyTaskTwo1' }],
+		ID: 1,
+	},
+	{
+		name: 'dummyTwo',
+		tasks: [{ name: 'dummyTaskOne2' }, { name: 'dummyTaskTwo2' }],
+		ID: 1,
+	},
+];
 
 class list {
 	constructor(name) {
@@ -21,7 +32,7 @@ class task {
 const createList = function (listName) {
 	const newList = new list(listName);
 	lists.push(newList);
-	console.log(lists);
+	console.table(lists);
 };
 
 const createTask = function (
@@ -34,9 +45,10 @@ const createTask = function (
 ) {
 	const newTask = new task(title, description, dueDate, priority, checklist);
 	activeList.push(newTask);
+	console.table(lists);
 };
 
 // createList('gym');
 // console.log(lists);
 
-export { lists, createList };
+export { lists, createList, createTask };
