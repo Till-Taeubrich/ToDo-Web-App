@@ -14,11 +14,12 @@ listOfLists.addEventListener('click', (e) => {
 	switchActiveList(e);
 });
 
-document.addEventListener('keydown', (e) => {
+listInputField.addEventListener('keydown', (e) => {
 	if (e.key === 'Enter') {
 		addNewList();
 		renderLists();
-		clearTasks();
+		renderTasks();
+		listInputField.value = '';
 	}
 });
 
@@ -77,6 +78,11 @@ const giveNewListActiveStatus = function () {
 	listOfLists.lastChild.classList.add('active-list');
 };
 
+const updateTasksHeadline = function () {
+	const tasksHeadline = document.querySelector('[data-tasks-Headline]');
+	tasksHeadline.textContent = `Tasks Of ${getObjectOfList().name}`;
+};
+
 const clearTasks = function () {
 	while (taskList.firstChild) {
 		taskList.removeChild(taskList.firstChild);
@@ -95,6 +101,7 @@ const appendTasks = function () {
 const renderTasks = function () {
 	clearTasks();
 	appendTasks();
+	updateTasksHeadline();
 };
 
 const initialPageLoad = (function () {
