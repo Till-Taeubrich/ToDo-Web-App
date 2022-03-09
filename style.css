@@ -13,7 +13,7 @@ body {
 	grid-template-rows: 1fr 8fr;
 }
 
-body .logoArea {
+body .logo-area {
 	grid-area: 1 / 2 / 2 / 3;
 	display: flex;
 	justify-content: right;
@@ -22,7 +22,7 @@ body .logoArea {
 	font-size: 1.5rem;
 }
 
-body .logoArea .logo {
+body .logo-area .logo {
 	width: 2rem;
 }
 
@@ -31,7 +31,7 @@ body .sidebar {
 	background-color: darkgrey;
 }
 
-body .taskArea {
+body .main-area {
 	grid-area: 2 / 2 / 3 / 3;
 	background-color: cornsilk;
 }
