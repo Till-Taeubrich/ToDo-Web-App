@@ -7,18 +7,28 @@
 	/* border: 1px red solid; */
 }
 
+.active-list {
+	background-color: orangered;
+} /* delete later */
+
 body {
 	display: grid;
 	grid-template-columns: 1fr 4fr;
 	grid-template-rows: 1fr 8fr;
 }
 
+body h3 {
+	text-align: center;
+	border-bottom: 3px black solid;
+}
+
 body .logo-area {
 	grid-area: 1 / 2 / 2 / 3;
+	background-color: antiquewhite;
 	display: flex;
 	justify-content: right;
 	gap: 0.5rem;
-	margin: 1rem 2rem;
+	padding: 1rem 2rem;
 	font-size: 1.5rem;
 }
 
@@ -38,5 +48,5 @@ body .main-area .tasks {
 
 body .main-area {
 	grid-area: 2 / 2 / 3 / 3;
-	background-color: cornsilk;
+	background-color: rgba(85, 107, 47, 0.671);
 }
