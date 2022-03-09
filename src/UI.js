@@ -7,21 +7,25 @@ const addListButton = document.querySelector('.add-list-button');
 const taskList = document.querySelector('.tasks');
 const addTaskButton = document.querySelector('.add-task-button');
 
+const listInputField = document.querySelector('.list-name-input');
+
+// EventListener____________
 listOfLists.addEventListener('click', (e) => {
 	switchActiveList(e);
 });
 
-// EventListener____________
-addListButton.addEventListener('click', () => {
-	createList(prompt('')); //get name of list... replace later with form
-	renderLists();
-	renderTasks();
+document.addEventListener('keydown', (e) => {
+	if (e.key === 'Enter') {
+		addNewList();
+		renderLists();
+		clearTasks();
+	}
 });
 
 addTaskButton.addEventListener('click', () => {
-	const listName = getObjectOfList();
-	createTask(listName, prompt(''));
-	clearTasks();
+	const listObject = getObjectOfList();
+	createTask(listObject, prompt(''));
+	renderTasks();
 });
 
 // Functions____________
@@ -29,6 +33,11 @@ const clearLists = function () {
 	while (listOfLists.firstChild) {
 		listOfLists.removeChild(listOfLists.firstChild);
 	}
+};
+
+const addNewList = function () {
+	const input = listInputField.value;
+	createList(input);
 };
 
 const appendLists = function () {
@@ -76,7 +85,6 @@ const clearTasks = function () {
 
 const appendTasks = function () {
 	const currentTasks = getObjectOfList().tasks;
-	console.log(currentTasks);
 	currentTasks.forEach((task) => {
 		const taskElement = document.createElement('li');
 		taskElement.textContent = task.title;
