@@ -6,6 +6,7 @@ const listOfLists = document.querySelector('.lists');
 const taskList = document.querySelector('.tasks');
 const tasks = document.querySelector('.tasks');
 const addTaskButton = document.querySelector('.add-task-button');
+const clearButton = document.querySelector('.clear-button');
 
 const listInputField = document.querySelector('.list-name-input');
 
@@ -27,13 +28,15 @@ listInputField.addEventListener('keydown', (e) => {
 	}
 });
 
-document.addEventListener('click', (e) => {
-	checkTask(e);
+tasks.addEventListener('click', (e) => {
+	crossTask(e);
 });
 
 addTaskButton.addEventListener('click', () => {
 	showForm();
 });
+
+clearButton.addEventListener('click', removeCheckedTasks);
 
 addButton.addEventListener('click', () => {
 	const listObject = getObjectOfList();
@@ -107,6 +110,22 @@ function updateTasksHeadline() {
 	tasksHeadline.textContent = `Tasks Of ${getObjectOfList().name}`;
 }
 
+function removeCheckedTasks() {
+	const checkedTasks = document.querySelectorAll('.task-title.checked');
+	console.log(checkedTasks);
+	checkedTasks.forEach((task) => {
+		task.parentNode.remove();
+	});
+}
+
+function crossTask(e) {
+	if (e.target.classList.contains('task-title')) {
+		e.target.classList.contains('checked')
+			? e.target.classList.remove('checked')
+			: e.target.classList.add('checked');
+	}
+}
+
 function showForm() {
 	form.style.display = 'flex';
 }
@@ -147,14 +166,6 @@ function renderTasks() {
 	clearTasks();
 	appendTasks();
 	updateTasksHeadline();
-}
-
-function checkTask(e) {
-	if (e.target.classList.contains('task-title')) {
-		e.target.classList.contains('checked')
-			? e.target.classList.remove('checked')
-			: e.target.classList.add('checked');
-	}
 }
 
 (function () {
