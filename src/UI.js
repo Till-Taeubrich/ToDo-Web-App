@@ -2,9 +2,9 @@ import { lists, createList, createTask } from './logic';
 
 // Variables____________
 const listOfLists = document.querySelector('.lists');
-const addListButton = document.querySelector('.add-list-button');
 
 const taskList = document.querySelector('.tasks');
+const tasks = document.querySelector('.tasks');
 const addTaskButton = document.querySelector('.add-task-button');
 
 const listInputField = document.querySelector('.list-name-input');
@@ -27,6 +27,10 @@ listInputField.addEventListener('keydown', (e) => {
 	}
 });
 
+document.addEventListener('click', (e) => {
+	checkTask(e);
+});
+
 addTaskButton.addEventListener('click', () => {
 	showForm();
 });
@@ -47,6 +51,7 @@ addButton.addEventListener('click', () => {
 closeButton.addEventListener('click', closeForm);
 
 // Functions____________
+
 function clearLists() {
 	while (listOfLists.firstChild) {
 		listOfLists.removeChild(listOfLists.firstChild);
@@ -54,8 +59,10 @@ function clearLists() {
 }
 
 function addNewList() {
-	const input = listInputField.value;
-	createList(input);
+	const inputValue = listInputField.value;
+	if (inputValue) {
+		createList(inputValue);
+	}
 }
 
 function appendLists() {
@@ -118,8 +125,21 @@ function appendTasks() {
 	const currentTasks = getObjectOfList().tasks;
 	currentTasks.forEach((task) => {
 		const taskElement = document.createElement('li');
-		taskElement.textContent = task.title;
+		taskElement.classList.add('task');
 		taskList.append(taskElement);
+
+		const titleElement = document.createElement('div');
+		titleElement.textContent = task.title;
+		titleElement.classList.add('task-title');
+
+		if (task.dueDate) {
+			const dateElement = document.createElement('div');
+			dateElement.innerText = task.dueDate;
+			dateElement.classList.add('task-date');
+			taskElement.append(dateElement);
+
+			taskElement.append(titleElement);
+		}
 	});
 }
 
@@ -127,6 +147,14 @@ function renderTasks() {
 	clearTasks();
 	appendTasks();
 	updateTasksHeadline();
+}
+
+function checkTask(e) {
+	if (e.target.classList.contains('task-title')) {
+		e.target.classList.contains('checked')
+			? e.target.classList.remove('checked')
+			: e.target.classList.add('checked');
+	}
 }
 
 (function () {

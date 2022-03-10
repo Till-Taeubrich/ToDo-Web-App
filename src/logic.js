@@ -1,12 +1,12 @@
 const lists = [
 	{
 		name: 'dummyOne',
-		tasks: [{ title: 'dummyTaskOne1' }, { title: 'dummyTaskTwo1' }],
+		tasks: [],
 		ID: 0,
 	},
 	{
 		name: 'dummyTwo',
-		tasks: [{ title: 'dummyTaskOne2' }, { title: 'dummyTaskTwo2' }],
+		tasks: [],
 		ID: 1,
 	},
 ];
