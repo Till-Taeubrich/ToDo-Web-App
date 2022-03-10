@@ -9,6 +9,10 @@ const addTaskButton = document.querySelector('.add-task-button');
 
 const listInputField = document.querySelector('.list-name-input');
 
+const form = document.querySelector('.task-form');
+const addButton = document.querySelector('[data-add-button]');
+const closeButton = document.querySelector('[data-close-button]');
+
 // EventListener____________
 listOfLists.addEventListener('click', (e) => {
 	switchActiveList(e);
@@ -24,87 +28,108 @@ listInputField.addEventListener('keydown', (e) => {
 });
 
 addTaskButton.addEventListener('click', () => {
-	const listObject = getObjectOfList();
-	createTask(listObject, prompt(''));
-	renderTasks();
+	showForm();
 });
 
+addButton.addEventListener('click', () => {
+	const listObject = getObjectOfList();
+
+	const title = document.querySelector('[data-form-title]').value;
+	const description = document.querySelector('[data-form-description]').value;
+	const date = document.querySelector('[data-form-date]').value;
+	const priority = document.querySelector('input[name="priority"]:checked').value;
+
+	createTask(listObject, title, description, date, priority);
+	renderTasks();
+	closeForm();
+});
+
+closeButton.addEventListener('click', closeForm);
+
 // Functions____________
-const clearLists = function () {
+function clearLists() {
 	while (listOfLists.firstChild) {
 		listOfLists.removeChild(listOfLists.firstChild);
 	}
-};
+}
 
-const addNewList = function () {
+function addNewList() {
 	const input = listInputField.value;
 	createList(input);
-};
+}
 
-const appendLists = function () {
+function appendLists() {
 	for (let i = 0; i < lists.length; i++) {
 		const listElement = document.createElement('li');
 		listElement.textContent = lists[i].name;
 		listElement.dataset.id = i;
 		listOfLists.append(listElement);
 	}
-};
+}
 
-const renderLists = function () {
+function renderLists() {
 	clearLists();
 	appendLists();
 	giveNewListActiveStatus();
-};
+}
 
-const getActiveList = function () {
+function getActiveList() {
 	return document.querySelector('.active-list');
-};
+}
 
-const getObjectOfList = function () {
+function getObjectOfList() {
 	const activeList = getActiveList();
 	return lists.find((list) => {
 		return list.ID === Number(activeList.getAttribute('data-id'));
 	});
-};
+}
 
-const switchActiveList = function (e) {
+function switchActiveList(e) {
 	const activeList = getActiveList();
 	activeList.classList.remove('active-list');
 	e.target.classList.add('active-list');
 	renderTasks();
-};
+}
 
-const giveNewListActiveStatus = function () {
+function giveNewListActiveStatus() {
 	listOfLists.lastChild.classList.add('active-list');
-};
+}
 
-const updateTasksHeadline = function () {
+function updateTasksHeadline() {
 	const tasksHeadline = document.querySelector('[data-tasks-Headline]');
 	tasksHeadline.textContent = `Tasks Of ${getObjectOfList().name}`;
-};
+}
 
-const clearTasks = function () {
+function showForm() {
+	form.style.display = 'flex';
+}
+
+function closeForm() {
+	form.style.display = 'none';
+}
+
+function clearTasks() {
 	while (taskList.firstChild) {
 		taskList.removeChild(taskList.firstChild);
 	}
-};
+}
 
-const appendTasks = function () {
+function appendTasks() {
 	const currentTasks = getObjectOfList().tasks;
 	currentTasks.forEach((task) => {
 		const taskElement = document.createElement('li');
 		taskElement.textContent = task.title;
 		taskList.append(taskElement);
 	});
-};
+}
 
-const renderTasks = function () {
+function renderTasks() {
 	clearTasks();
 	appendTasks();
 	updateTasksHeadline();
-};
+}
 
-const initialPageLoad = (function () {
+(function () {
 	appendLists();
 	listOfLists.firstChild.classList.add('active-list');
 

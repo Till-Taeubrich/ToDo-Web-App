@@ -12,6 +12,7 @@
 } /* delete later */
 
 body {
+	min-height: 100vh;
 	display: grid;
 	grid-template-columns: 1fr 4fr;
 	grid-template-rows: 1fr 8fr;
@@ -49,4 +50,20 @@ body .main-area .tasks {
 body .main-area {
 	grid-area: 2 / 2 / 3 / 3;
 	background-color: rgba(85, 107, 47, 0.671);
+}
+
+body .main-area .task-form {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid grey;
+}
+
+body .main-area .task-form .form-button {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

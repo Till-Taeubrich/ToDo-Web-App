@@ -23,6 +23,36 @@
   </div>
   <div class="main-area">
     <h3 data-tasks-Headline>Your Tasks</h3>
+
+
+    <form class="task-form">
+      <label for="title">Title:</label>
+      <input data-form-title type="text" id="title">
+
+      <label for="description">Description:</label>
+      <input data-form-description type="text">
+
+      <label for="date">Due Date:</label>
+      <input data-form-date type="date">
+
+
+      <div>Priority:</div>
+      <label for="low">Low</label>
+      <input data-form-priority type="radio" id="low" name="priority" value="low">
+      <label for="middle">Middle</label>
+      <input data-form-priority type="radio" id="middle" name="priority" value="middle">
+      <label for="high">High</label>
+      <input data-form-priority type="radio" id="high" name="priority" value="high">
+
+      <div class="form-button">
+        <button type="button" data-add-button>Add</button>
+        <button type="button" data-close-button>Close</button>
+      </div>
+
+    </form>
+
+
+
     <ul class="tasks"></ul>
     <img class="add-task-button" src="./assets/plus-circle-outline.png" alt="add-new-task">
 

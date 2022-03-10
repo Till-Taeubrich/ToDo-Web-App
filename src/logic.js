@@ -29,21 +29,14 @@ class task {
 	}
 }
 
-const createList = function (listName) {
+function createList(listName) {
 	const newList = new list(listName);
 	lists.push(newList);
-};
+}
 
-const createTask = function (
-	activeList,
-	title,
-	description,
-	dueDate,
-	priority,
-	checklist
-) {
+function createTask(activeList, title, description, dueDate, priority, checklist) {
 	const newTask = new task(title, description, dueDate, priority, checklist);
 	activeList.tasks.push(newTask);
-};
+}
 
 export { lists, createList, createTask };
