@@ -1,4 +1,4 @@
-import { lists, createList, createTask } from './logic';
+import { lists, createList, createTask, updateTaskId } from './logic';
 
 // Variables____________
 const listOfLists = document.querySelector('.lists');
@@ -111,11 +111,9 @@ function updateTasksHeadline() {
 }
 
 function removeCheckedTasks() {
-	const checkedTasks = document.querySelectorAll('.task-title.checked');
-	console.log(checkedTasks);
-	checkedTasks.forEach((task) => {
-		task.parentNode.remove();
-	});
+	const activeList = getObjectOfList();
+	activeList.tasks = activeList.tasks.filter((task) => !task.status);
+	renderTasks();
 }
 
 function crossTask(e) {
@@ -145,6 +143,7 @@ function appendTasks() {
 	currentTasks.forEach((task) => {
 		const taskElement = document.createElement('li');
 		taskElement.classList.add('task');
+		taskElement.dataset.id = Date.now().toString();
 		taskList.append(taskElement);
 
 		const titleElement = document.createElement('div');
@@ -156,9 +155,23 @@ function appendTasks() {
 			dateElement.innerText = task.dueDate;
 			dateElement.classList.add('task-date');
 			taskElement.append(dateElement);
-
-			taskElement.append(titleElement);
 		}
+
+		if (task.priority === 'low') {
+			taskElement.style.borderLeft = 'skyblue 3px solid';
+		}
+
+		if (task.priority === 'middle') {
+			taskElement.style.borderLeft = 'orange 3px solid';
+		}
+
+		if (task.priority === 'high') {
+			taskElement.style.borderLeft = 'red 3px solid';
+		}
+
+		taskElement.append(titleElement);
+
+		updateTaskId(task);
 	});
 }
 
