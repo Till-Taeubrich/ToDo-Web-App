@@ -111,7 +111,19 @@ function updateTasksHeadline() {
 }
 
 function removeCheckedTasks() {
+	// goal: change object status of each to true
+
+	const checkedTasksChildrens = document.querySelectorAll('.checked');
 	const activeList = getObjectOfList();
+
+	checkedTasksChildrens.forEach((children) => {
+		const elementId = children.parentNode.dataset.id;
+		const checkedTaskObjects = activeList.tasks.find((task) => {
+			return task.id === elementId;
+		});
+		checkedTaskObjects.status = true;
+	});
+
 	activeList.tasks = activeList.tasks.filter((task) => !task.status);
 	renderTasks();
 }
@@ -143,7 +155,7 @@ function appendTasks() {
 	currentTasks.forEach((task) => {
 		const taskElement = document.createElement('li');
 		taskElement.classList.add('task');
-		taskElement.dataset.id = Date.now().toString();
+		taskElement.dataset.id = task.id;
 		taskList.append(taskElement);
 
 		const titleElement = document.createElement('div');

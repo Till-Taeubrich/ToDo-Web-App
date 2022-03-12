@@ -1,7 +1,7 @@
 const lists = [
 	{
 		name: 'dummyOne',
-		tasks: [{ title: 'hu' }, { title: 'hab' }], // dummy
+		tasks: [],
 		ID: 0,
 	},
 	{
@@ -36,11 +36,10 @@ function createList(listName) {
 
 function createTask(activeList, title, description, dueDate, priority, checklist) {
 	const newTask = new task(title, description, dueDate, priority, checklist);
+	newTask.id = Date.now().toString();
 	activeList.tasks.push(newTask);
 }
 
-function updateTaskId(task) {
-	task.id = Date.now().toString();
-}
+function updateTaskId(task) {}
 
 export { lists, createList, createTask, updateTaskId };
