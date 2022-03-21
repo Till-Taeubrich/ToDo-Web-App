@@ -144,8 +144,6 @@ body .main-area .tasks .task {
 
 body .main-area .tasks .task .task-title {
 	font-size: 1rem;
-	translate: text-decoration-line 1s;
-	transform: translate 1s;
 }
 
 body .main-area .tasks .task .task-date {
@@ -229,6 +227,7 @@ body .main-area .task-form .row {
 
 body .main-area .task-form.visible {
 	display: flex;
+	animation: pop-up 0.13s linear;
 }
 
 body .main-area .task-form .form-button {
@@ -266,6 +265,12 @@ body .main-area .task-form .form-button .btn:last-child:hover {
 
 body .main-area .task-form .form-button .btn:active {
 	transform: scale(0.98);
+}
+
+@keyframes pop-up {
+	0% {
+		scale: 0;
+	}
 }
 
 @media screen and (max-width: 992px) {
