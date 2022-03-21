@@ -8,52 +8,51 @@
   <title>CheckDone</title>
   <script defer src="main.js" type="module"></script>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="./assets/head-check.png">
+  <link rel="icon" href="./assets/head-check.png" class="logo">
 </head>
 
 <body>
   <div class="logo-area">
-    <img class="logo" src="./assets/head-check.png" alt="CheckDone-logo">
-    <div>CheckDone</div>
+    <div class="logo">
+      <img class="logo-img" src="./assets/head-check.svg" alt="CheckDone-logo">
+      <div>CheckDone</div>
+    </div>
   </div>
+
   <div class="sidebar">
-    <h3>Your Lists</h3>
     <ul class="lists"></ul>
-    <input class="list-name-input" type="text" placeholder="Add New List">
+    <input class="list-name-input" type="text" placeholder=" + New List">
   </div>
+
   <div class="main-area">
     <h3 data-tasks-Headline>Your Tasks</h3>
-
+    <div class="add-task-button">+</div>
+    <ul class="tasks"></ul>
+    <button class="clear-button">Clear Checked Tasks</button>
 
     <form class="task-form">
-      <label for="title">Title:</label>
+      <label class="row" for="title">* Task:</label>
       <input data-form-title type="text" id="title">
 
-      <label for="description">Description:</label>
-      <input data-form-description type="text">
-
-      <label for="date">Due Date:</label>
-      <input data-form-date type="date">
+      <label class="row" for="date">Due Date:</label>
+      <input id="date" data-form-date type="date">
 
 
-      <div>Priority:</div>
-      <label for="low">Low</label>
-      <input data-form-priority type="radio" id="low" name="priority" value="low">
-      <label for="middle">Middle</label>
-      <input data-form-priority type="radio" id="middle" name="priority" value="middle">
-      <label for="high">High</label>
-      <input data-form-priority type="radio" id="high" name="priority" value="high">
+      <div class="row">Priority:</div>
+      <select id="priority">
+        <option value="">None</option>
+        <option value="low">Low</option>
+        <option value="middle">Middle</option>
+        <option value="high">High</option>
+      </select>
 
-      <div class="form-button">
-        <button type="button" data-add-button>Add</button>
-        <button type="button" data-close-button>Close</button>
+      <div class="form-button row">
+        <button class="btn" type="button" data-add-button>Add</button>
+        <button class="btn" type="button" data-close-button>Close</button>
       </div>
 
     </form>
 
-    <ul class="tasks"></ul>
-    <img class="add-task-button" src="./assets/plus-circle-outline.png" alt="add-new-task">
-    <button class="clear-button">Clear Checked Tasks</button>
 
   </div>
 </body>
