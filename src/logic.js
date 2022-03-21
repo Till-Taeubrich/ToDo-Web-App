@@ -20,9 +20,8 @@ class list {
 }
 
 class task {
-	constructor(title, description, dueDate, priority) {
+	constructor(title, dueDate, priority) {
 		this.title = title;
-		this.description = description;
 		this.dueDate = dueDate;
 		this.priority = priority;
 		this.status = false;
@@ -34,12 +33,10 @@ function createList(listName) {
 	lists.push(newList);
 }
 
-function createTask(activeList, title, description, dueDate, priority, checklist) {
-	const newTask = new task(title, description, dueDate, priority, checklist);
+function createTask(activeList, title, dueDate, priority, checklist) {
+	const newTask = new task(title, dueDate, priority, checklist);
 	newTask.id = Date.now().toString();
 	activeList.tasks.push(newTask);
 }
 
-function updateTaskId(task) {}
-
-export { lists, createList, createTask, updateTaskId };
+export { lists, createList, createTask };

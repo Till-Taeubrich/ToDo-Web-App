@@ -1,4 +1,4 @@
-import { lists, createList, createTask, updateTaskId } from './logic';
+import { lists, createList, createTask } from './logic';
 
 // Variables____________
 const listOfLists = document.querySelector('.lists');
@@ -11,12 +11,17 @@ const clearButton = document.querySelector('.clear-button');
 const listInputField = document.querySelector('.list-name-input');
 
 const form = document.querySelector('.task-form');
+const titleField = document.querySelector('#title');
+const dateField = document.querySelector('#date');
+const priorityField = document.querySelector('#priority');
 const addButton = document.querySelector('[data-add-button]');
 const closeButton = document.querySelector('[data-close-button]');
 
 // EventListener____________
 listOfLists.addEventListener('click', (e) => {
-	switchActiveList(e);
+	if (e.target.closest('li')) {
+		switchActiveList(e);
+	}
 });
 
 listInputField.addEventListener('keydown', (e) => {
@@ -39,16 +44,22 @@ addTaskButton.addEventListener('click', () => {
 clearButton.addEventListener('click', removeCheckedTasks);
 
 addButton.addEventListener('click', () => {
-	const listObject = getObjectOfList();
+	if (titleField.value == '') {
+		titleField.style.borderColor = 'red';
+	} else {
+		const listObject = getObjectOfList();
 
-	const title = document.querySelector('[data-form-title]').value;
-	const description = document.querySelector('[data-form-description]').value;
-	const date = document.querySelector('[data-form-date]').value;
-	const priority = document.querySelector('input[name="priority"]:checked').value;
+		const title = document.querySelector('[data-form-title]').value;
+		const date = document.querySelector('[data-form-date]').value;
+		const priority = document.querySelector('#priority').value;
 
-	createTask(listObject, title, description, date, priority);
-	renderTasks();
-	closeForm();
+		const dateString = new Date(form.date.value).toDateString('dddd, MMMM ,yyyy');
+
+		createTask(listObject, title, dateString, priority);
+		renderTasks();
+		closeForm();
+		resetForm();
+	}
 });
 
 closeButton.addEventListener('click', closeForm);
@@ -107,7 +118,7 @@ function giveNewListActiveStatus() {
 
 function updateTasksHeadline() {
 	const tasksHeadline = document.querySelector('[data-tasks-Headline]');
-	tasksHeadline.textContent = `Tasks Of ${getObjectOfList().name}`;
+	tasksHeadline.textContent = `${getObjectOfList().name}`;
 }
 
 function removeCheckedTasks() {
@@ -137,11 +148,18 @@ function crossTask(e) {
 }
 
 function showForm() {
-	form.style.display = 'flex';
+	form.classList.add('visible');
 }
 
 function closeForm() {
-	form.style.display = 'none';
+	form.classList.remove('visible');
+}
+
+function resetForm() {
+	titleField.style.borderColor = '';
+	titleField.value = '';
+	dateField.value = '';
+	priorityField.value = '';
 }
 
 function clearTasks() {
@@ -159,7 +177,7 @@ function appendTasks() {
 		taskList.append(taskElement);
 
 		const titleElement = document.createElement('div');
-		titleElement.textContent = task.title;
+		titleElement.textContent = '◦ ' + task.title;
 		titleElement.classList.add('task-title');
 
 		if (task.dueDate) {
@@ -170,23 +188,20 @@ function appendTasks() {
 		}
 
 		if (task.priority === 'low') {
-			taskElement.style.borderLeft = 'skyblue 3px solid';
+			taskElement.style.borderLeft = 'skyblue 3px double';
 		}
 
 		if (task.priority === 'middle') {
-			taskElement.style.borderLeft = 'orange 3px solid';
+			taskElement.style.borderLeft = 'orange 3px double';
 		}
 
 		if (task.priority === 'high') {
-			taskElement.style.borderLeft = 'red 3px solid';
+			taskElement.style.borderLeft = 'red 3px double';
 		}
 
 		taskElement.append(titleElement);
-
-		updateTaskId(task);
 	});
 }
-
 function renderTasks() {
 	clearTasks();
 	appendTasks();
