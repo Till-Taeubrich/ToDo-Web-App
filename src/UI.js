@@ -181,7 +181,6 @@ function appendTasks() {
 		titleElement.classList.add('task-title');
 
 		if (task.dueDate != 'Invalid Date') {
-			console.log(task.dueDate);
 			const dateElement = document.createElement('div');
 			dateElement.innerText = task.dueDate;
 			dateElement.classList.add('task-date');
