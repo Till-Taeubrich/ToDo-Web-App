@@ -180,23 +180,26 @@ function appendTasks() {
 		titleElement.textContent = '◦ ' + task.title;
 		titleElement.classList.add('task-title');
 
-		if (task.dueDate) {
+		if (task.dueDate != 'Invalid Date') {
+			console.log(task.dueDate);
 			const dateElement = document.createElement('div');
 			dateElement.innerText = task.dueDate;
 			dateElement.classList.add('task-date');
 			taskElement.append(dateElement);
 		}
 
-		if (task.priority === 'low') {
-			taskElement.style.borderLeft = 'skyblue 3px double';
-		}
+		if (task.priority != '') {
+			if (task.priority === 'low') {
+				taskElement.style.borderLeft = 'skyblue 3px double';
+			}
 
-		if (task.priority === 'middle') {
-			taskElement.style.borderLeft = 'orange 3px double';
-		}
+			if (task.priority === 'middle') {
+				taskElement.style.borderLeft = 'orange 3px double';
+			}
 
-		if (task.priority === 'high') {
-			taskElement.style.borderLeft = 'red 3px double';
+			if (task.priority === 'high') {
+				taskElement.style.borderLeft = 'red 3px double';
+			}
 		}
 
 		taskElement.append(titleElement);
