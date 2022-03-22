@@ -1,13 +1,18 @@
 const lists = [
 	{
-		name: 'dummyOne',
+		name: 'Work',
 		tasks: [],
 		ID: 0,
 	},
 	{
-		name: 'dummyTwo',
+		name: 'Gym',
 		tasks: [],
 		ID: 1,
+	},
+	{
+		name: 'Shopping List',
+		tasks: [],
+		ID: 2,
 	},
 ];
 

@@ -122,8 +122,6 @@ function updateTasksHeadline() {
 }
 
 function removeCheckedTasks() {
-	// goal: change object status of each to true
-
 	const checkedTasksChildrens = document.querySelectorAll('.checked');
 	const activeList = getObjectOfList();
 
