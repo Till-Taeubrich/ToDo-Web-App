@@ -1,5 +1,5 @@
-# ToDo-Web-App
+# ToDo Web App
 
-Part of "The Odin Project" 
+Web application to categorize & check off your daily tasks.
 
-https://till-taeubrich.github.io/ToDo-Web-App/
+Click [HERE](https://till-taeubrich.github.io/ToDo-Web-App/) for a live demo.
